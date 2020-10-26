@@ -21,15 +21,15 @@ exports.up = async function(knex) {
         table.boolean("task_complete")
         table.integer("project_id")
             .references("id")
-            .inTable("project")
+            .inTable("projects")
             .onDelete("SET NULL")
             .onUpdate("CASCADE")
 
     })
 
-    await knex.schema.createTable("project_resources", (table)=> {
+    await knex.schema.createTable("projects_resources", (table)=> {
         table
-            .integer("project_id")
+            .integer("projects_id")
                 .references("id")
                 .inTable("project")
                 .onDelete("CASCADE")
@@ -51,12 +51,12 @@ exports.up = async function(knex) {
                 .onDelete("CASCADE")
                 .onUpdate("CASCADE")
 
-            table.primary(["resources_id"])
+            table.primary(["task_id"])
     })
 };
 
 exports.down = async function(knex) {
-    await knex.schema.dropTableIfExists("project_resources")
+    await knex.schema.dropTableIfExists("projects_resources")
     await knex.schema.dropTableIfExists("tasks")
     await knex.schema.dropTableIfExists("resources")
     await knex.schema.dropTableIfExists("projects")
