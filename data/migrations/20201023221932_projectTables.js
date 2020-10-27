@@ -31,7 +31,7 @@ exports.up = async function(knex) {
         table
             .integer("projects_id")
                 .references("id")
-                .inTable("project")
+                .inTable("projects")
                 .onDelete("CASCADE")
                 .onUpdate("CASCADE")
                 
@@ -39,19 +39,19 @@ exports.up = async function(knex) {
         table   
             .integer("resources_id")
                 .references("id")
-                .inTable("resource")
+                .inTable("resources")
                 .onDelete("CASCADE")
                 .onUpdate("CASCADE")
                 .notNull()
 
         table   
-            .integer("task_id")
+            .integer("tasks_id")
                 .references("id")
-                .inTable("task")
+                .inTable("tasks")
                 .onDelete("CASCADE")
                 .onUpdate("CASCADE")
 
-            table.primary(["task_id"])
+            table.primary(["tasks_id"])
     })
 };
 
